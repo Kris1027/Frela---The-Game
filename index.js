@@ -1,24 +1,24 @@
-const playerElement = document.querySelector('.player');
-const gameArea = document.querySelector('.container');
+const playerElement = document.querySelector('#player');
+const boardElement = document.querySelector('#game-board');
 
 const movePlayer = (direction) => {
     // new position of the player
     const newPosition = playerElement.offsetLeft + direction * 10;
-    // get position of the game area
-    const { left, right } = gameArea.getBoundingClientRect();
-    // size of the game area
-    const maxRight = right - left - 100;
-    // if player is inside the game area - move player
+    // position of the board
+    const { left, right } = boardElement.getBoundingClientRect();
+    const maxRight = right - left;
+    // move the player if it is in the board
     if (newPosition >= 0 && newPosition < maxRight) {
         playerElement.style.left = `${newPosition}px`;
     }
-};
+}
 
 const handleKeyboard = (e) => {
-    // console.log(e.keyCode);
+    console.log(e.code);
+    // move player based on the key
     switch (e.code) {
         case 'ArrowLeft': movePlayer(-1); break;
-        case 'ArrowRight': movePlayer(1); break;
+        case 'ArrowRight': movePlayer(1);
     }
 }
 
