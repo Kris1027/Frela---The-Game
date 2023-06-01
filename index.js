@@ -6,9 +6,10 @@ const movePlayer = (direction) => {
     const newPosition = playerElement.offsetLeft + direction * 10;
     // position of the board
     const { left, right } = boardElement.getBoundingClientRect();
-    const maxRight = right - left;
+    const minLeft = playerElement.offsetWidth / 2;
+    const maxRight = right - left - minLeft;
     // move the player if it is in the board
-    if (newPosition >= 0 && newPosition < maxRight) {
+    if (newPosition >= minLeft && newPosition < maxRight) {
         playerElement.style.left = `${newPosition}px`;
     }
 }
