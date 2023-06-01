@@ -19,3 +19,11 @@
     transform: translate(-50%);
     background-color: blue;
 }
+
+.ball {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    background-color: yellowgreen;
+    border-radius: 100%;
+}

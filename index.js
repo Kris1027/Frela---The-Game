@@ -1,6 +1,8 @@
 const playerElement = document.querySelector('#player');
 const boardElement = document.querySelector('#game-board');
 
+const balls = [];
+
 const movePlayer = (direction) => {
     // new position of the player
     const newPosition = playerElement.offsetLeft + direction * 10;
@@ -22,5 +24,36 @@ const handleKeyboard = (e) => {
         case 'ArrowRight': movePlayer(1);
     }
 }
+
+const createBalls = () => {
+    // create balls randomly
+    const shouldCreateBalls = Math.round(Math.random());
+    if (!shouldCreateBalls) return;
+    // create balls
+    const ball = document.createElement('div');
+    ball.className = 'ball';
+    ball.style.top = 0;
+    ball.style.left = `${Math.floor(Math.random() * boardElement.offsetWidth - 60)}px`;
+    // add the ball to the game board
+    boardElement.appendChild(ball);
+    balls.push(ball);
+}
+
+const moveBalls = () => {
+    // move the balls
+    for (let i = 0; i < balls.length; i++) {
+        const ball = balls[i];
+    // move the balls to the down position
+        ball.style.top = `${ball.offsetTop + 10}px`;
+    // if the ball hits the down position of the game board
+    if (enemy.offsetTop >= boardElement.offsetHeight) {
+        document.innerHTML = 'Game Over';
+    }
+    }
+}
+
+//Intervals
+setInterval(createBalls, 500);
+setInterval(moveBalls, 500)
 
 window.addEventListener('keydown', handleKeyboard);
