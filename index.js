@@ -3,12 +3,11 @@ const gameArea = document.querySelector('.container');
 
 const movePlayer = (direction) => {
     // new position of the player
-    const newPosition = playerElement.offsetLeft + direction * 20;
+    const newPosition = playerElement.offsetLeft + direction * 10;
     // get position of the game area
-    const {left, right} = gameArea.getBoundingClientRect();
+    const { left, right } = gameArea.getBoundingClientRect();
     // size of the game area
-    const minLeft = playerElement.offsetWidth;
-    const maxRight = right - left - minLeft;
+    const maxRight = right - left - 100;
     // if player is inside the game area - move player
     if (newPosition >= 0 && newPosition < maxRight) {
         playerElement.style.left = `${newPosition}px`;
