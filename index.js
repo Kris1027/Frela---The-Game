@@ -32,8 +32,8 @@ const createBalls = () => {
     // create balls
     const ball = document.createElement('div');
     ball.className = 'ball';
-    ball.style.top = 0;
-    ball.style.left = `${Math.floor(Math.random() * boardElement.offsetWidth - 60)}px`;
+    ball.style.top = -40 + 'px';
+    ball.style.left = `${Math.floor(Math.random() * (boardElement.offsetWidth - 40) + 40)}px`;
     // add the ball to the game board
     boardElement.appendChild(ball);
     balls.push(ball);
@@ -46,14 +46,16 @@ const moveBalls = () => {
     // move the balls to the down position
         ball.style.top = `${ball.offsetTop + 10}px`;
     // if the ball hits the down position of the game board
-    if (enemy.offsetTop >= boardElement.offsetHeight) {
-        document.innerHTML = 'Game Over';
-    }
+    if (ball.offsetTop >= boardElement.offsetHeight) {
+        balls.splice(i, 1);
+        ball.remove();
+        alert('Game Over');
+        }
     }
 }
 
 //Intervals
-setInterval(createBalls, 500);
+setInterval(createBalls, 2000);
 setInterval(moveBalls, 500)
 
 window.addEventListener('keydown', handleKeyboard);
