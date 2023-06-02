@@ -59,19 +59,35 @@ const moveBalls = () => {
     // Move the balls
     for (let i = 0; i < balls.length; i++) {
         const ball = balls[i];
-    // Move the balls to the down position
+        // Move the balls down
         ball.style.top = `${ball.offsetTop + 10}px`;
-    // If the player catches the ball, remove it
-    if (ball.offsetTop >= boardElement.offsetHeight) {
-        balls.splice(i, 1);
-        ball.remove();
-        document.body.innerHTML = `<h1 class="game-over">Game Over</h1>`;
+
+        // Check for collision with player
+        if (isCollision(playerElement, ball)) {
+            balls.splice(i, 1);
+            ball.remove();
+            // Handle collision logic here
+        }
+
+        // If the ball reaches the bottom, remove it
+        if (ball.offsetTop >= boardElement.offsetHeight) {
+            balls.splice(i, 1);
+            ball.remove();
+            document.body.innerHTML = `<img class="game-over" src="./image/gameOver.jpeg">`;
         }
     }
-}
+};
+
+const isCollision = (element1, element2) => {
+    const rect1 = element1.getBoundingClientRect();
+    const rect2 = element2.getBoundingClientRect();
+
+    return !(rect1.right < rect2.left || rect1.left > rect2.right || rect1.bottom < rect2.top || rect1.top > rect2.bottom);
+};
+
 
 // Intervals
-setInterval(createBalls, 2000);
-setInterval(moveBalls, 300)
+setInterval(createBalls, 500);
+setInterval(moveBalls, 100)
 
 window.addEventListener('keydown', handleKeyboard);
