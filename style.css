@@ -36,6 +36,11 @@ body {
     background: url(./image/ball.png) no-repeat center / contain;
 }
 
+#highscore {
+    text-align: center;
+    color: #fff;
+}
+
 .game-over {
     position: absolute;
     top: 50%;

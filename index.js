@@ -1,7 +1,9 @@
 const playerElement = document.querySelector('#player');
 const boardElement = document.querySelector('#game-board');
+const highScoreElement = document.querySelector('#highscore');
 
 const balls = [];
+let score = 0;
 
 const movePlayer = (directionX, directionY) => {
     // new player position in the board
@@ -66,7 +68,8 @@ const moveBalls = () => {
         if (isCollision(playerElement, ball)) {
             balls.splice(i, 1);
             ball.remove();
-            // Handle collision logic here
+            score++;
+            highScoreElement.textContent = `Highscore: ${score}`;
         }
 
         // If the ball reaches the bottom, remove it
