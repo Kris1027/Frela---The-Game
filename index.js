@@ -1,6 +1,7 @@
-const playerElement = document.querySelector('#player');
-const boardElement = document.querySelector('#game-board');
-const highScoreElement = document.querySelector('#highscore');
+const playerElement = document.querySelector('.player');
+const boardElement = document.querySelector('.game-board');
+const highScoreElement = document.querySelector('.highscore');
+const titleElement = document.querySelector('.title');
 
 const balls = [];
 let score = 0;
@@ -42,10 +43,9 @@ const handleKeyboard = (e) => {
     }
 };
 
+let shouldCreateBalls = true;
 
 const createBalls = () => {
-    // Create balls randomly
-    const shouldCreateBalls = Math.round(Math.random());
     if (!shouldCreateBalls) return;
     // Create balls
     const ball = document.createElement('div');
@@ -76,21 +76,44 @@ const moveBalls = () => {
         if (ball.offsetTop >= boardElement.offsetHeight) {
             balls.splice(i, 1);
             ball.remove();
-            document.body.innerHTML = `<img class="game-over" src="./image/gameOver.png">`;
+            gameOverScreen();
         }
     }
 };
 
 const isCollision = (element1, element2) => {
+    // Get the bounding rects of the two elements
     const rect1 = element1.getBoundingClientRect();
     const rect2 = element2.getBoundingClientRect();
 
     return !(rect1.right < rect2.left || rect1.left > rect2.right || rect1.bottom < rect2.top || rect1.top > rect2.bottom);
 };
 
+const gameOverScreen = () => {
+    const gameOverDiv = document.createElement('div');
+    gameOverDiv.classList.add('game-over');
+
+    boardElement.innerHTML = '';
+    boardElement.classList.remove('game-board')
+    boardElement.appendChild(gameOverDiv);
+
+    shouldCreateBalls = false;
+
+    titleElement.textContent = 'Game Over';
+    titleElement.classList.add('end-title');
+
+    const startAgainButton = document.createElement('button');
+    startAgainButton.textContent = 'Start Again';
+    boardElement.appendChild(startAgainButton);
+    startAgainButton.classList.add('start-again');
+    startAgainButton.addEventListener('click', () => {
+         location.reload();
+    });
+}
+
 
 // Intervals
 setInterval(createBalls, 500);
-setInterval(moveBalls, 100)
+setInterval(moveBalls, 70)
 
 window.addEventListener('keydown', handleKeyboard);
