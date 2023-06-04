@@ -8,8 +8,8 @@ let score = 0;
 
 const movePlayer = (directionX, directionY) => {
     // new player position in the board
-    const newPosX = playerElement.offsetLeft + directionX * 50;
-    const newPosY = playerElement.offsetTop + directionY * 50;
+    const newPosX = playerElement.offsetLeft + directionX * 40;
+    const newPosY = playerElement.offsetTop + directionY * 40;
 
     const { left, right, top, bottom } = boardElement.getBoundingClientRect();
     const minLeft = playerElement.offsetWidth / 2;
