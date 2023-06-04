@@ -76,7 +76,7 @@ const moveBalls = () => {
         if (ball.offsetTop >= boardElement.offsetHeight) {
             balls.splice(i, 1);
             ball.remove();
-            document.body.innerHTML = `<img class="game-over" src="./image/gameOver.jpeg">`;
+            document.body.innerHTML = `<img class="game-over" src="./image/gameOver.png">`;
         }
     }
 };
