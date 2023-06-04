@@ -62,7 +62,7 @@ const moveBalls = () => {
     for (let i = 0; i < balls.length; i++) {
         const ball = balls[i];
         // Move the balls down
-        ball.style.top = `${ball.offsetTop + 10}px`;
+        ball.style.top = `${ball.offsetTop + 1}px`;
 
         // If the ball reaches the bottom, game over
         if (ball.offsetTop >= boardElement.offsetHeight) {
@@ -104,7 +104,7 @@ const gameOverScreen = () => {
     const startAgainButton = document.createElement('button');
     startAgainButton.textContent = 'Start Again';
     boardElement.appendChild(startAgainButton);
-    startAgainButton.classList.add('start-again');
+    startAgainButton.classList.add('start-again-btn');
     startAgainButton.addEventListener('click', () => {
          location.reload();
     });
@@ -112,7 +112,7 @@ const gameOverScreen = () => {
 
 
 // Intervals
-setInterval(createBalls, 500);
-setInterval(moveBalls, 70)
+setInterval(createBalls, 700);
+setInterval(moveBalls, 10)
 
 window.addEventListener('keydown', handleKeyboard);

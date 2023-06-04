@@ -81,3 +81,16 @@ body {
 .end-title {
     color: red;
 }
+
+.start-again-btn {
+    position: absolute;
+    bottom: 1%;
+    left: 50%;
+    transform: translate(-50%);
+    border-radius: 10px;
+    padding: .5rem;
+    font-size: 2rem;
+    font-family: arial;
+    color: yellowgreen;
+    background-color: #c40;
+}
