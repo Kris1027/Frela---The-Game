@@ -1,6 +1,6 @@
 const playerElement = document.querySelector('.player');
 const boardElement = document.querySelector('.game-board');
-const highScoreElement = document.querySelector('.highscore');
+const highScoreElement = document.querySelector('.counter');
 const titleElement = document.querySelector('.title');
 
 const balls = [];
@@ -64,19 +64,18 @@ const moveBalls = () => {
         // Move the balls down
         ball.style.top = `${ball.offsetTop + 10}px`;
 
+        // If the ball reaches the bottom, game over
+        if (ball.offsetTop >= boardElement.offsetHeight) {
+            balls.splice(i, 1);
+            ball.remove();
+            gameOverScreen();
+        }
         // Check for collision with player
         if (isCollision(playerElement, ball)) {
             balls.splice(i, 1);
             ball.remove();
             score++;
-            highScoreElement.textContent = `Highscore: ${score}`;
-        }
-
-        // If the ball reaches the bottom, remove it
-        if (ball.offsetTop >= boardElement.offsetHeight) {
-            balls.splice(i, 1);
-            ball.remove();
-            gameOverScreen();
+            highScoreElement.textContent = `${score}`;
         }
     }
 };
