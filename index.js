@@ -45,6 +45,9 @@ const handleKeyboard = (e) => {
 
 let shouldCreateBalls = true;
 
+let createBallsInterval;
+let moveBallsInterval;
+
 const createBalls = () => {
     if (!shouldCreateBalls) return;
     // Create balls
@@ -63,19 +66,26 @@ const moveBalls = () => {
         const ball = balls[i];
         // Move the balls down
         ball.style.top = `${ball.offsetTop + 1}px`;
-
         // If the ball reaches the bottom, game over
         if (ball.offsetTop >= boardElement.offsetHeight) {
-            balls.splice(i, 1);
-            ball.remove();
-            gameOverScreen();
-        }
-        // Check for collision with player
-        if (isCollision(playerElement, ball)) {
-            balls.splice(i, 1);
-            ball.remove();
-            score++;
-            highScoreElement.textContent = `${score}`;
+            // Check if the ball has reached close to the bottom before removing it
+            if (ball.offsetTop >= boardElement.offsetHeight - ball.offsetHeight) {
+                gameOverScreen();
+                return; // End the function execution since the game is over
+            } else {
+                balls.splice(i, 1);
+                ball.remove();
+                i--; // Decrement i to account for the removed ball
+            }
+        } else {
+            // Check for collision with player
+            if (isCollision(playerElement, ball)) {
+                balls.splice(i, 1);
+                ball.remove();
+                score++;
+                highScoreElement.textContent = `${score}`;
+                i--; // Decrement i to account for the removed ball
+            }
         }
     }
 };
@@ -97,6 +107,8 @@ const gameOverScreen = () => {
     boardElement.appendChild(gameOverDiv);
 
     shouldCreateBalls = false;
+    clearInterval(createBallsInterval);
+    clearInterval(moveBallsInterval);
 
     titleElement.textContent = 'Game Over';
     titleElement.classList.add('end-title');
@@ -112,7 +124,7 @@ const gameOverScreen = () => {
 
 
 // Intervals
-setInterval(createBalls, 700);
-setInterval(moveBalls, 10)
+createBallsInterval = setInterval(createBalls, 700);
+moveBallsInterval = setInterval(moveBalls, 10)
 
 window.addEventListener('keydown', handleKeyboard);
