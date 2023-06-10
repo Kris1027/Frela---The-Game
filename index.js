@@ -2,6 +2,9 @@ const playerElement = document.querySelector('.player');
 const boardElement = document.querySelector('.game-board');
 const highScoreElement = document.querySelector('.counter');
 const titleElement = document.querySelector('.title');
+const heart1 = document.querySelector('.heart-1');
+const heart2 = document.querySelector('.heart-2');
+const heart3 = document.querySelector('.heart-3');
 
 const balls = [];
 let score = 0;
@@ -60,6 +63,9 @@ const createBalls = () => {
     balls.push(ball);
 }
 
+const hearts = [heart1, heart2, heart3];
+let ballHits = 0;
+
 const moveBalls = () => {
     // Move the balls
     for (let i = 0; i < balls.length; i++) {
@@ -70,13 +76,18 @@ const moveBalls = () => {
         if (ball.offsetTop >= boardElement.offsetHeight) {
             // Check if the ball has reached close to the bottom before removing it
             if (ball.offsetTop >= boardElement.offsetHeight - ball.offsetHeight) {
-                gameOverScreen();
-                return; // End the function execution since the game is over
-            } else {
-                balls.splice(i, 1);
-                ball.remove();
-                i--; // Decrement i to account for the removed ball
+                if (ballHits === 3) {
+                    gameOverScreen();
+                    return; // End the function execution since the game is over
+                } else {
+                    ballHits++;
+                    const heartIndex = hearts.length - ballHits;
+                    hearts[heartIndex].classList.add('hide');
+                }
             }
+            balls.splice(i, 1);
+            ball.remove();
+            i--; // Decrement i to account for the removed ball
         } else {
             // Check for collision with player
             if (isCollision(playerElement, ball)) {
@@ -85,6 +96,13 @@ const moveBalls = () => {
                 score++;
                 highScoreElement.textContent = `${score}`;
                 i--; // Decrement i to account for the removed ball
+
+                // Check if all hearts have the 'hide' class
+                const allHeartsHidden = hearts.every(heart => heart.classList.contains('hide'));
+                if (allHeartsHidden) {
+                    gameOverScreen();
+                    return; // End the function execution since the game is over
+                }
             }
         }
     }
@@ -121,7 +139,6 @@ const gameOverScreen = () => {
          location.reload();
     });
 }
-
 
 // Intervals
 createBallsInterval = setInterval(createBalls, 700);

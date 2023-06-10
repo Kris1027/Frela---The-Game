@@ -96,3 +96,11 @@ body {
     color: yellowgreen;
     background-color: #c40;
 }
+
+.hearts {
+    width: 5%;
+}
+
+.hearts.hide {
+    display: none;
+}
