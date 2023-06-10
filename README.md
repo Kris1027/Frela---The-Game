@@ -15,10 +15,10 @@
 
 ## To do
 - Main menu
-- game over screen
-- highscore
 - lives
 - more animation
+- sound
+- fix highscores
 
 ## Screenshots
 
