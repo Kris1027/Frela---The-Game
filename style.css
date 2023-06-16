@@ -8,7 +8,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700&display=swap');
 
 .title {
-    font-size: 3rem;
+    font-size: 2.5rem;
     text-align: center;
     color: orange;
     text-shadow: 0 -1px 0 #fff
@@ -98,7 +98,7 @@ body {
 }
 
 .hearts {
-    width: 5%;
+    width: 3%;
 }
 
 .hearts.hide {

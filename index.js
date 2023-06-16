@@ -46,6 +46,25 @@ const handleKeyboard = (e) => {
     }
 };
 
+const handleTouch = (e) => {
+    const touchX = e.touches[0].clientX;
+    const touchY = e.touches[0].clientY;
+    const playerRect = playerElement.getBoundingClientRect();
+    const playerCenterX = playerRect.left + playerRect.width / 2;
+    const playerCenterY = playerRect.top + playerRect.height / 2;
+
+    const deltaX = touchX - playerCenterX;
+    const deltaY = touchY - playerCenterY;
+
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+
+        movePlayer(deltaX > 0 ? 1 : -1, 0);
+    } else {
+
+        movePlayer(0, deltaY > 0 ? 1 : -1);
+    }
+};
+
 let shouldCreateBalls = true;
 
 let createBallsInterval;
@@ -145,3 +164,4 @@ createBallsInterval = setInterval(createBalls, 700);
 moveBallsInterval = setInterval(moveBalls, 10)
 
 window.addEventListener('keydown', handleKeyboard);
+boardElement.addEventListener('touchstart', handleTouch);
