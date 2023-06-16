@@ -104,3 +104,44 @@ body {
 .hearts.hide {
     display: none;
 }
+
+@media screen and (max-width: 768px) {
+    .game-board {
+        width: 90vw;
+        height: 90vw;
+    }
+
+    .player {
+        width: 10%;
+        height: 10%;
+    }
+
+    .ball {
+        width: 5%;
+        height: 5%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .counter {
+        font-size: 24px;
+    }
+
+    .title {
+        font-size: 32px;
+    }
+
+    .heart {
+        width: 16px;
+        height: 16px;
+    }
+
+    .game-over {
+        font-size: 32px;
+    }
+
+    .start-again-btn {
+        font-size: 16px;
+        padding: 8px 16px;
+    }
+}
