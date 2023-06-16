@@ -163,4 +163,4 @@ createBallsInterval = setInterval(createBalls, 700);
 moveBallsInterval = setInterval(moveBalls, 10)
 
 window.addEventListener('keydown', handleKeyboard);
-boardElement.addEventListener('touchstart', handleTouch);
+window.addEventListener('touchstart', handleTouch);
