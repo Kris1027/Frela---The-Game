@@ -97,6 +97,10 @@ body {
     background-color: #c40;
 }
 
+.heart-container {
+    text-align: center;
+}
+
 .hearts {
     width: 3%;
 }
