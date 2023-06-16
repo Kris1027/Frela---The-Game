@@ -28,7 +28,6 @@ const movePlayer = (directionX, directionY) => {
 };
 
 const handleKeyboard = (e) => {
-    console.log(e.code);
     // Moving player
     switch (e.code) {
         case 'ArrowLeft':
