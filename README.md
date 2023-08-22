@@ -15,11 +15,12 @@
 
 ## To do
 - Main menu
-- lives
 - more animation
 - sound
-- fix highscores
 
 ## Screenshots
 
-<img width="1440" alt="Zrzut ekranu 2023-06-4 o 12 18 42" src="https://github.com/Kris1027/Frela---The-Game/assets/120410235/9b3e7981-6e69-456e-9b2c-17c66d6489e1">
+![screenshot (2)](https://github.com/Kris1027/Frela---The-Game/assets/120410235/74e8b38d-3de9-4555-b678-26726842ec81)
+
+
+![screenshot (3)](https://github.com/Kris1027/Frela---The-Game/assets/120410235/f3986370-fa2d-442e-8886-79a39c3a807b)
